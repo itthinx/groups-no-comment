@@ -40,10 +40,10 @@ class Groups_No_Comment {
 	 */
 	public static function groups_restrict_comments_pro_show_form( $show_form, $id ) {
 		if ( $user_id = get_current_user_id() ) {
-			if ( $group_id = Groups_Group::read_by_name( 'No Comment' ) ) {
+			if ( $group = Groups_Group::read_by_name( 'No Comment' ) ) {
 				$user = new Groups_User( $user_id );
 				$user_groups = $user->group_ids_deep;
-				if ( in_array( $group_id, $user_groups ) ) {
+				if ( in_array( $group->group_id, $user_groups ) ) {
 					$show_form = false;
 				}
 			}
@@ -62,10 +62,10 @@ class Groups_No_Comment {
 	 */
 	public static function groups_restrict_comments_pro_user_can_read_comments( $user_can_read, $user_id, $post_id ) {
 		if ( $user_id = get_current_user_id() ) {
-			if ( $group_id = Groups_Group::read_by_name( 'No Comment' ) ) {
+			if ( $group = Groups_Group::read_by_name( 'No Comment' ) ) {
 				$user = new Groups_User( $user_id );
 				$user_groups = $user->group_ids_deep;
-				if ( in_array( $group_id, $user_groups ) ) {
+				if ( in_array( $group->group_id, $user_groups ) ) {
 					$user_can_read = false;
 				}
 			}
